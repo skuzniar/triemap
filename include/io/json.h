@@ -48,7 +48,7 @@ dec(std::ostream& os)
     return os;
 }
 
-// Print triemap collection as a json-like object
+// Print triemap collection as a JSON-like object
 template<typename TM>
 class json_like
 {
@@ -103,7 +103,7 @@ public:
 
 namespace json {
 
-// Triemap collection as a json-like object manipulator
+// Triemap collection as a JSON-like object manipulator
 template<typename TM>
 inline detail::json_like<TM>
 like(const TM& tm)

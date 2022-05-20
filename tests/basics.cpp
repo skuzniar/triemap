@@ -146,7 +146,7 @@ main(int argc, char* argv[])
     test_removal<urepo>();
     test_lookup<urepo>();
 
-    std::cout << "All basic tests pased." << std::endl;
+    std::cout << "All basic tests passed." << std::endl;
 
     return 0;
 }

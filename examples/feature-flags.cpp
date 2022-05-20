@@ -28,7 +28,7 @@ Person people[] = {
     { "004", "Jane", "Poe", "Services", "Consulting" },
 };
 
-// We want to have a list of named features and be able to controll them at the division, department and user level.
+// We want to have a list of named features and be able to control them at the division, department and user level.
 using Feature      = std::string;
 
 using Division     = std::string;

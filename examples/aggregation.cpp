@@ -21,7 +21,7 @@ operator<<(std::ostream& os, const Person& p)
     return os;
 }
 
-// Users will acquire and relese some kind of resource
+// Users will acquire and release some kind of resource
 struct Resource
 {
     size_t value;
@@ -140,7 +140,7 @@ main(int argc, char* argv[])
         acquire(person, { 100 });
     }
 
-    // Verify that utilization lavels have been properly updated
+    // Verify that utilization levels have been properly updated
     assert(GL.find("Sales", "Retail", "001")->utilization == 100);
     assert(GL.find("Sales", "Retail")->utilization == 100);
     assert(GL.find("Sales")->utilization == 100);

@@ -36,7 +36,7 @@ using Division   = char;
 using Department = char;
 using User       = char;
 
-// We use flat map of user configurations where <Division, Department, User> is a qunique key.
+// We use flat map of user configurations where <Division, Department, User> is a unique key.
 using Key        = std::tuple<Division, Department, User>;
 using FlatMap    = std::map<Key, Configuration>;
 

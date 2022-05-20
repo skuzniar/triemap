@@ -100,7 +100,7 @@ post_order_climb(const REPO& r, QS&&... qs)
 using orepo = O3::collection::otriemap<char, std::string, std::string>;
 using urepo = O3::collection::utriemap<char, std::string, std::string>;
 
-// Check if two strings contain the same letters - rathere unorthodox use of operator overloading.
+// Check if two strings contain the same letters - rather unorthodox use of operator overloading.
 bool operator &= (const std::string& l, const std::string& r)
 {
     return l.size() == r.size() && std::is_permutation(l.begin(), l.end(), r.begin());
@@ -228,7 +228,7 @@ main(int, char* [])
     assert(post_order_climb(o, "b", "e") == post_order_climb(u, "b", "e"));
     assert(post_order_climb(o, "b", "f") == post_order_climb(u, "b", "f"));
 
-    std::cout << "All traversal tests pased." << std::endl;
+    std::cout << "All traversal tests passed." << std::endl;
 
     return 0;
 }

@@ -43,7 +43,7 @@ dec(std::ostream& os)
 
 }
 
-// Print collection as a json object
+// Print collection as a JSON object
 template<typename R>
 void
 print(const R& r, std::ostream& os)
