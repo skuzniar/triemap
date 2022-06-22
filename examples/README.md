@@ -16,3 +16,7 @@ Rolling up values from children into parents is one of the things hierarchical d
 ## reduction.cpp
 
 This program shows how to start with a flat collection of records, put them into a hierarchical structure and then reduce the number of records by removing some duplicates. We then show that the flat and hierarchical structures are equivalent when looking up elements. 
+
+## 2d-triemap.cpp
+
+Triemap with data element that itself is a triemap.

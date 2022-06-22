@@ -11,8 +11,6 @@
 #include <map>
 #include <unordered_map>
 
-#include "io/json.h"
-
 namespace O3 {
 namespace collection {
 
@@ -290,10 +288,6 @@ public:
     }
 
 private:
-    friend std::ostream& operator<<(std::ostream& os, const this_type& tm) {
-        return os << O3::io::json::like(tm);
-    }
-
     std::optional<data_type> m_data;
 };
 
@@ -733,10 +727,6 @@ public:
     }
 
 private:
-    friend std::ostream& operator<<(std::ostream& os, const this_type& tm) {
-        return os << O3::io::json::like(tm);
-    }
-
     std::optional<data_type> m_data;
     repo_type                m_repo;
 };

@@ -49,7 +49,7 @@ reduce(TM& tm)
         return true;
     });
 }
-}
-}
+} // namespace algo
+} // namespace O3
 
 #endif

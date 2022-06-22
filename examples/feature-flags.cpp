@@ -3,7 +3,8 @@
 #include <cassert>
 #include <ostream>
 
-#include "triemap.h"
+#include "triemap/triemap.h"
+#include "triemap/io/json.h"
 
 struct Person
 {
@@ -76,6 +77,7 @@ main(int argc, char* argv[])
 
     if (verbose) {
         std::cout << "Feature flags:\n" << ff << std::endl;
+        std::cout << "Feature flags as D3:\n" << O3::io::json::d3(ff) << std::endl;
     }
 
     return 0;

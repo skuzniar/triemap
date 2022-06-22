@@ -3,105 +3,63 @@
 #include <cassert>
 #include <ostream>
 
-#include "triemap.h"
+#include "triemap/triemap.h"
+#include "triemap/io/json.h"
 
-// Helper functions to manage indentation
-namespace io {
-namespace detail {
-inline int
-geti()
+// Data element
+struct Data
 {
-    static int i = std::ios_base::xalloc();
-    return i;
-}
-}
+    Data(char d)
+      : value(d)
+    {}
 
-// Output indentation
-inline std::ostream&
-ind(std::ostream& os)
+    char value;
+};
+
+std::ostream&
+operator<<(std::ostream& os, const Data& d)
 {
-    for (int i = 0; i < os.iword(detail::geti()); ++i)
-        os << ' ';
+    os << d.value;
     return os;
 }
 
-// Increase indentation
-inline std::ostream&
-inc(std::ostream& os)
+
+template<>
+struct O3::io::json::traits<Data>
 {
-    os.iword(detail::geti()) += 2;
-    return os;
-}
+    template<class CharT, class Traits>
+    static inline void print(std::basic_ostream<CharT, Traits>& os, const Data& t)
+    {
+        os << O3::io::json::quoted(t);
+    }
+    static inline const char* dtag()
+    {
+        return "data";
+    }
+};
 
-// Decrease indentation
-inline std::ostream&
-dec(std::ostream& os)
-{
-    os.iword(detail::geti()) -= 2;
-    return os;
-}
-
-}
-
-// Print collection as a JSON object
-template<typename R>
-void
-print(const R& r, std::ostream& os)
-{
-    bool closed = false;
-
-    r.traverse_dfs(
-        [&](const auto& n, auto&&... qs) {
-            if (closed) {
-                os << ',' << '\n' << io::ind;
-            }
-            if constexpr (sizeof...(qs) > 0) {
-                (os << ... << qs) << ':';
-            }
-
-            os << '{' << '\n' << io::inc << io::ind;
-
-            if (n) {
-                os << "Data" << ':' << *n;
-                closed = true;
-            } else {
-                closed = false;
-            }
-
-            return true;
-        },
-        [&](const auto& , auto&&...) {
-            os << '\n' << io::dec << io::ind << '}';
-            closed = true;
-            return true;
-        });
-}
 
 // Collections of char data elements addressed by string prefixes.
-using orepo = O3::collection::otriemap<char, std::string, std::string>;
-using urepo = O3::collection::utriemap<char, std::string, std::string>;
+using orepo = O3::collection::otriemap<Data, std::string, std::string>;
 
 int
 main(int, char*[])
 {
     orepo o;
-    urepo u;
+
+    std::cout << "\n\nOrdered empty triemap as a JSON-like object.\n" << O3::io::json::like(o) << std::endl;
+    std::cout << "\n\nOrdered empty triemap as a proper JSON object.\n" << O3::io::json::proper(o) << std::endl;
+    std::cout << "\n\nOrdered empty triemap as a D3 JSON object.\n" << O3::io::json::d3(o) << std::endl;
 
     o.insert('0');
-    u.insert('0');
-    o.insert('A', "a");
-    u.insert('A', "a");
 
+    //o.insert('A', "a");
     o.insert('B', "b");
-    u.insert('B', "b");
+
     o.insert('C', "a", "c");
-    u.insert('C', "a", "c");
     o.insert('D', "a", "d");
-    u.insert('D', "a", "d");
     o.insert('E', "b", "e");
-    u.insert('E', "b", "e");
     o.insert('F', "b", "f");
-    u.insert('F', "b", "f");
 
     /* Tree has the following structure
      *
@@ -115,11 +73,9 @@ main(int, char*[])
      *
      */
 
-    std::cout << "\n\nOrdered triemap.\n";
-    print(o, std::cout);
-
-    std::cout << "\n\nUnordered triemap.\n";
-    print(u, std::cout);
+    std::cout << "\n\nOrdered triemap as a JSON-like object.\n" << O3::io::json::like(o) << std::endl;
+    std::cout << "\n\nOrdered triemap as a proper JSON object.\n" << O3::io::json::proper(o) << std::endl;
+    std::cout << "\n\nOrdered triemap as a D3 JSON object.\n" << O3::io::json::d3(o) << std::endl;
 
     std::cout << std::endl;
     return 0;

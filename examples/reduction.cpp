@@ -7,7 +7,8 @@
 #include <utility>
 #include <functional>
 
-#include "triemap.h"
+#include "triemap/triemap.h"
+#include "triemap/io/json.h"
 
 // User will have their own configuration represented as a number. Different users may share the same configuration.
 struct Configuration

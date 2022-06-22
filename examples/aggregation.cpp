@@ -3,7 +3,8 @@
 #include <cassert>
 #include <ostream>
 
-#include "triemap.h"
+#include "triemap/triemap.h"
+#include "triemap/io/json.h"
 
 struct Person
 {

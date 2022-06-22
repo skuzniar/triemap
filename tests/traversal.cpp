@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <cassert>
 
-#include "triemap.h"
+#include "triemap/triemap.h"
 
 //-------------------------------------------------------------------------------------------------
 // Return list of data elements collected by using immediate children of a given node

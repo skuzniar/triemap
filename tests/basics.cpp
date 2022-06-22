@@ -2,7 +2,7 @@
 #include <limits>
 #include <cassert>
 
-#include "triemap.h"
+#include "triemap/triemap.h"
 
 //-------------------------------------------------------------------------------------------------
 // Collections of char data elements addressed by string prefixes.
