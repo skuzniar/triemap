@@ -11,8 +11,7 @@
 #include <map>
 #include <unordered_map>
 
-namespace O3 {
-namespace collection {
+namespace O3::collection {
 
 namespace details {
 
@@ -218,11 +217,13 @@ public:
     //------------------------------------------------------------------------------------------------------------------
     template<typename LEVF>
     void traverse_level(LEVF&& levf) const
-    {}
+    {
+    }
 
     template<typename LEVF>
     void traverse_level(LEVF&& levf)
-    {}
+    {
+    }
 
     //------------------------------------------------------------------------------------------------------------------
     // Depth first search traversal with early termination that combines pre and post order variants.
@@ -751,7 +752,6 @@ using umap = std::unordered_map<K, T>;
 template<typename DATA, typename PFIX, typename... PFIXS>
 using utriemap = details::triemap<umap, DATA, PFIX, PFIXS...>;
 
-} // namespace collection
-} // namespace O3
+} // namespace O3::collection
 
 #endif

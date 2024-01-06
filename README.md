@@ -17,6 +17,12 @@ Triemap is a header-only library with no dependencies other than the standard li
 ## Usage
 
 The tests and examples directories contain simple programs that show how to use triemap. Please refer to the readme-files in those directories for more information.
+To build the test simply run the followingt commands.
+
+```console
+cmake -B build
+cmake --build build
+```
 
 ## Implementation
 

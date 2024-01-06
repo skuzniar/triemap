@@ -3,6 +3,7 @@
 #include <limits>
 #include <map>
 #include <type_traits>
+#include <utility>
 
 #include "triemap/triemap.h"
 #include "triemap/io/json.h"
@@ -12,7 +13,7 @@ struct Data
 {
     char value;
 
-    Data(char d)
+    explicit Data(char d)
       : value(d)
     {}
 
@@ -33,8 +34,8 @@ struct Continent
 {
     std::string name;
 
-    Continent(const std::string& name)
-      : name(name)
+    explicit Continent(std::string  name)
+      : name(std::move(name))
     {}
 
     bool operator<(const Continent& oth) const
@@ -53,8 +54,8 @@ struct Country
 {
     std::string name;
 
-    Country(const std::string& name)
-      : name(name)
+    explicit Country(std::string  name)
+      : name(std::move(name))
     {}
 
     bool operator<(const Country& oth) const
@@ -74,8 +75,8 @@ struct Division
 {
     std::string name;
 
-    Division(const std::string& name)
-      : name(name)
+    explicit Division(std::string  name)
+      : name(std::move(name))
     {}
 
     bool operator<(const Division& oth) const
@@ -94,8 +95,8 @@ struct Department
 {
     std::string name;
 
-    Department(const std::string& name)
-      : name(name)
+    explicit Department(std::string  name)
+      : name(std::move(name))
     {}
 
     bool operator<(const Department& oth) const
